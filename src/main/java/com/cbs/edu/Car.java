@@ -1,4 +1,6 @@
-public class Car /*implements Comparable<Car>*/{
+package com.cbs.edu;
+
+public class Car /*implements Comparable<com.cbs.edu.Car>*/{
 
     private String model;
 
@@ -18,13 +20,13 @@ public class Car /*implements Comparable<Car>*/{
     }
 
     /*@Override
-    public int compareTo(Car car) {
+    public int compareTo(com.cbs.edu.Car car) {
         return this.voulme - car.voulme;
     }*/
 
     @Override
     public String toString() {
-        return "Car{" +
+        return "com.cbs.edu.Car{" +
                 "model='" + model + '\'' +
                 ", voulme=" + voulme +
                 '}';
