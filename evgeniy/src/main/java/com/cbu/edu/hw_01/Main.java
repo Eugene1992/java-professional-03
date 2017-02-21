@@ -4,13 +4,13 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Stackator<String> stack = new Stackator<>();
+        Stackable<String> stack = new Stackable<>();
         stack.push ("One");
         stack.push ("Two");
         stack.push ("Five");
 
         System.out.println("--- Walk ---");
-        for (String s : stack.walk())
+        for (String s : stack)
             System.out.println(s);
 
         System.out.println("--- Pops ---");
