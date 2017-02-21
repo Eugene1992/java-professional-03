@@ -7,26 +7,20 @@ import java.util.NoSuchElementException;
 /**
  * Created by Sviatoslav on 20.02.2017.
  */
-public class ImitationStack<T extends Number> implements IGetIterator{
+public class ImitationStack<T> implements IGetIterator {
     private int size;
-    private T[] stack;
-    private T[] newStack;
+    private T stack[];
     private int top;
-
 
 
     public ImitationStack(int size) {
         this.size = size;
-        stack = (T[])new Object[size];
+        stack = (T[]) new Object[size];
         this.top = -1;
     }
 
     public boolean isEmpty() {
-        boolean check = false;
-        if (top == -1) {
-            check = true;
-        }
-        return check;
+        return top == -1 ? true : false;
     }
 
     public void push(T element) {
@@ -34,7 +28,7 @@ public class ImitationStack<T extends Number> implements IGetIterator{
             int top = ++this.top;
             stack[top] = element;
         } else if (stack.length >= size) {
-            newStack = Arrays.copyOf(stack, size * 3 / 2 + 1);
+            T[] newStack = Arrays.copyOf(stack, size * 3 / 2 + 1);
             stack = null;
             stack = newStack;
             int top = ++this.top;
@@ -42,24 +36,25 @@ public class ImitationStack<T extends Number> implements IGetIterator{
         }
     }
 
-    public int pop() {
+    public T pop() {
         if (isEmpty()) {
-            return 0;
+            return null;
         } else {
-            T element = (T) stack[top];
+            T element = stack[top];
             top--;
-            return (int) element;
+            return element;
         }
     }
 
     @Override
     public Iterator getIterator() {
-        return null; // i wanted return new IteratorImpl, but i have problems with interface " IGetIterator".
-     }
+        return (Iterator) new IteratorImpl();
+    }
 
 
     private class IteratorImpl implements IIterator {
         int index = 0;
+
         @Override
         public boolean hasNext() {
             boolean check;
@@ -73,17 +68,10 @@ public class ImitationStack<T extends Number> implements IGetIterator{
 
         @Override
         public T next() {
-            if(!hasNext()){
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            return (T)stack[top++];
+            return stack[top++];
         }
-
-        @Override
-        public void remove() {
-            //stack.
-        }
-
-
     }
 }
