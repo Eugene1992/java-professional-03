@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  */
 public class ImitationStack<T> {
     private int size = 10;
-    private T stack[] = (T[]) new Object[size];
+    private T stack[];
     private int top;
     private int length;
 
@@ -19,17 +19,9 @@ public class ImitationStack<T> {
      * stack and his total count of elements.
      */
     public ImitationStack() {
+        stack = (T[]) new Object[size];
         this.top = -1;
         length = 0;
-    }
-
-    /**
-     * Getter for getting last elements
-     *
-     * @return - last element of stack.
-     */
-    public int getTop() {
-        return top;
     }
 
     /**
@@ -57,18 +49,15 @@ public class ImitationStack<T> {
      * @param element - element whose, will be put into stack.
      */
     public void push(T element) {
-        if (stack.length < size) {
-            int top = ++this.top;
-            stack[top] = element;
-            this.length++;
-        } else if (stack.length >= size) {
+        if (stack.length >= size) {
             T[] newStack = Arrays.copyOf(stack, size * 3 / 2 + 1);
             stack = null;
             stack = newStack;
-            int top = ++this.top;
-            stack[top] = element;
-            length++;
+
         }
+        int top = ++this.top;
+        stack[top] = element;
+        length++;
     }
 
     /**
@@ -92,7 +81,7 @@ public class ImitationStack<T> {
      *
      * @return instance of IteratorImpl.
      */
-    public Iterator getIterator() {
+    public Iterator<T> getIterator() {
         return new IteratorImpl();
     }
 

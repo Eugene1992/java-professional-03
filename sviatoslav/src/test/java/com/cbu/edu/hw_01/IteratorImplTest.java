@@ -3,6 +3,7 @@ package com.cbu.edu.hw_01;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
@@ -11,38 +12,39 @@ import static org.junit.Assert.*;
  * Created by Sviatoslav on 21.02.2017.
  */
 public class IteratorImplTest {
-    private ImitationStack<Integer> testHasNext;
-    private ImitationStack<String> imitationStack;
+
+    private ImitationStack<Integer> fillingStack;
+    private ImitationStack<String> emptyStack;
 
     @Before
     public void setUp() throws Exception {
-        testHasNext = new ImitationStack<>();
-        testHasNext.push(147);
-        testHasNext.push(252);
-        testHasNext.push(343);
-        testHasNext.push(7863);
-        testHasNext.push(313453);
+        fillingStack = new ImitationStack<>();
+        fillingStack.push(147);
+        fillingStack.push(252);
+        fillingStack.push(343);
+        fillingStack.push(7863);
+        fillingStack.push(313453);
 
-        imitationStack = new ImitationStack<>();
+        emptyStack = new ImitationStack<>();
 
     }
 
     @Test
     public void hasNextTrue() throws Exception {
-        final boolean RESULT = testHasNext.getIterator().hasNext();
+        final boolean RESULT = fillingStack.getIterator().hasNext();
         assertTrue(RESULT);
     }
 
     @Test
     public void hasNextFalse() throws Exception {
-        final boolean RESULT = imitationStack.getIterator().hasNext();
+        final boolean RESULT = emptyStack.getIterator().hasNext();
         assertFalse(RESULT);
     }
 
     @Test
     public void next() throws Exception {
-        if (testHasNext.getIterator().hasNext()) {
-            final int RESULT = (int) testHasNext.getIterator().next();
+        if (fillingStack.getIterator().hasNext()) {
+            final int RESULT = fillingStack.getIterator().next();
             final int EXPECTED_RESULT = 147;
             assertEquals(RESULT, EXPECTED_RESULT);
         }
@@ -50,7 +52,12 @@ public class IteratorImplTest {
 
     @Test(expected = NoSuchElementException.class)
     public void nextError() throws Exception {
-        imitationStack.getIterator().next();
+        emptyStack.getIterator().next();
     }
 
+    @Test
+    public void notNull() throws Exception {
+        final Iterator<Integer> RESULT = fillingStack.getIterator();
+        assertNotNull(RESULT);
+    }
 }

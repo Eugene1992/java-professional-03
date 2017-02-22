@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
  * Created by Sviatoslav on 21.02.2017.
  */
 public class ImitationStackTest {
+
     private ImitationStack<Integer> imitationStack;
     int arr[];
 
@@ -19,15 +20,17 @@ public class ImitationStackTest {
     }
 
     @Test
-    public void isEmpty() throws Exception {
-        final boolean EXPECTED_RESULT = true;
+    public void isEmptyTrue() throws Exception {
         final boolean RESULT = imitationStack.isEmpty();
-        if (imitationStack.getTop() == -1) {
-            assertTrue(EXPECTED_RESULT == RESULT);
-        } else {
-            assertFalse(EXPECTED_RESULT == RESULT);
-        }
+        assertTrue(RESULT);
+    }
 
+
+    @Test
+    public void isEmptyFalse() throws Exception {
+        imitationStack.push(123);
+        final boolean RESULT = imitationStack.isEmpty();
+        assertFalse(RESULT);
     }
 
     @Test
