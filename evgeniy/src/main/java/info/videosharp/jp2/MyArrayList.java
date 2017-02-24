@@ -4,8 +4,9 @@ import java.util.*;
 
 /**
  * Created by Jevgenij on 23.02.2017.
+ * My own realization of ArrayList
  */
-public class MyArrayList<T> implements List<T>
+class MyArrayList<T> implements List<T>
 {
     private final int INITIAL_ARRAY_LENGTH = 2;
     private int size;
@@ -223,6 +224,11 @@ public class MyArrayList<T> implements List<T>
                 throw new NoSuchElementException();
             return arr[index++];
         }
+
+        @Override
+        public void remove() {
+
+        }
     }
 
 
@@ -250,7 +256,7 @@ public class MyArrayList<T> implements List<T>
      * @return <tt>true</tt> if this list contains no elements
      */
     public boolean isEmpty() {
-        return size == 0;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -269,7 +275,7 @@ public class MyArrayList<T> implements List<T>
      * sequence
      */
     public Object[] toArray() {
-        return new Object[0];
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -312,7 +318,7 @@ public class MyArrayList<T> implements List<T>
      * @throws NullPointerException if the specified array is null
      */
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -334,7 +340,7 @@ public class MyArrayList<T> implements List<T>
      * @see #contains(Object)
      */
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -359,7 +365,7 @@ public class MyArrayList<T> implements List<T>
      * @see #add(Object)
      */
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -390,7 +396,7 @@ public class MyArrayList<T> implements List<T>
      *                                       (<tt>index &lt; 0 || index &gt; size()</tt>)
      */
     public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -412,7 +418,7 @@ public class MyArrayList<T> implements List<T>
      * @see #contains(Object)
      */
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -436,7 +442,7 @@ public class MyArrayList<T> implements List<T>
      * @see #contains(Object)
      */
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -447,7 +453,7 @@ public class MyArrayList<T> implements List<T>
      *                                       is not supported by this list
      */
     public void clear() {
-        size = 0;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -468,7 +474,7 @@ public class MyArrayList<T> implements List<T>
      *                              (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     public int indexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -489,7 +495,7 @@ public class MyArrayList<T> implements List<T>
      *                              (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     public int lastIndexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -500,7 +506,7 @@ public class MyArrayList<T> implements List<T>
      * sequence)
      */
     public ListIterator<T> listIterator() {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -519,7 +525,7 @@ public class MyArrayList<T> implements List<T>
      *                                   ({@code index < 0 || index > size()})
      */
     public ListIterator<T> listIterator(int index) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -557,7 +563,7 @@ public class MyArrayList<T> implements List<T>
      *                                   fromIndex &gt; toIndex</tt>)
      */
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -583,6 +589,6 @@ public class MyArrayList<T> implements List<T>
      */
     public boolean remove(Object o)
     {
-        return false;
+        throw new UnsupportedOperationException();
     }
 }
