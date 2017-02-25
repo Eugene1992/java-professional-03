@@ -155,6 +155,7 @@ public class MyArrayListImpl<T> implements IMyList<T> {
     }
 
     private class IteratorImpl implements Iterator<T> {
+
         int index = 0;
 
         /**
