@@ -7,7 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-import static com.cbu.edu.hw_03_02.WriteToTheFile.WriteTo;
+import static com.cbu.edu.hw_03_02.WriteToTheFile.writeTo;
 
 /**
  * Created by Sviatoslav on 26.02.2017.
@@ -22,7 +22,7 @@ public class Main {
             for (Element element : elements) {
                 String fullReference[] = element.attr("href").split("/");
                 String fileName = fullReference[fullReference.length - 1];
-                WriteTo("E:\\ProjectAndOther\\IDEAProjects\\java-professional-03\\sviatoslav\\src\\main\\java\\com\\cbu\\edu\\hw_03_02\\Files\\" + fileName,
+                writeTo("E:\\ProjectAndOther\\IDEAProjects\\java-professional-03\\sviatoslav\\src\\main\\java\\com\\cbu\\edu\\hw_03_02\\Files\\" + fileName,
                         "http://flangex.herokuapp.com" + element.attr("href"));
             }
         } catch (Exception e) {
