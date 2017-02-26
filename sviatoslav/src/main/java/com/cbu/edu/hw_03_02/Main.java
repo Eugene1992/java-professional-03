@@ -7,18 +7,23 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+import static com.cbu.edu.hw_03_02.WriteToTheFile.WriteTo;
+
 /**
  * Created by Sviatoslav on 26.02.2017.
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        Document document = null;
-        Elements elements = null;
+        Document document;
+        Elements elements;
         try {
             document = Jsoup.connect("http://flangex.herokuapp.com/io/load").get();
             elements = document.select("a");
             for (Element element : elements) {
-                System.out.println(element.attr("href"));
+                String fullReference[] = element.attr("href").split("/");
+                String fileName = fullReference[fullReference.length - 1];
+                WriteTo("E:\\ProjectAndOther\\IDEAProjects\\java-professional-03\\sviatoslav\\src\\main\\java\\com\\cbu\\edu\\hw_03_02\\Files\\" + fileName,
+                        "http://flangex.herokuapp.com" + element.attr("href"));
             }
         } catch (Exception e) {
             e.printStackTrace();
