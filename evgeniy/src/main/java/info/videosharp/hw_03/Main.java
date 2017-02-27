@@ -4,11 +4,11 @@ public class Main
 {
     public static void main(String[] args)
     {
-        testImageDownloader();
+        //testImageDownloader();
         testFindFiles ();
     }
 
-    public static void testImageDownloader ()
+    private static void testImageDownloader ()
     {
         ImageDownloader id = new ImageDownloader();
 
@@ -18,9 +18,9 @@ public class Main
                 "");
     }
 
-    public static void testFindFiles ()
+    private static void testFindFiles ()
     {
-        FindFiles ff = new FindFilesRecursionIO();
+        FindFiles ff = new FindFilesQueueNIO();
         String files [] = ff.findFiles(".", "java");
         for (String name : files)
             System.out.println(name);
