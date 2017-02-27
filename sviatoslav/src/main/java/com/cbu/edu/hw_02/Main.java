@@ -1,6 +1,5 @@
 package com.cbu.edu.hw_02;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -13,15 +12,9 @@ public class Main {
         arrayList.add(1);
         arrayList.add(2);
         arrayList.add(3);
-        arrayList.add(4);
-        arrayList.add(5);
-        arrayList.add(2, 6);
-        arrayList.set(3, 7);
-        arrayList.remove(2);
-        System.out.println(arrayList.contains(88888));
-        System.out.println(arrayList.size());
+        arrayList.add(0, 5);
 
-        while (iter.hasNext()){
+        while (iter.hasNext()) {
             System.out.println(iter.next());
         }
 
