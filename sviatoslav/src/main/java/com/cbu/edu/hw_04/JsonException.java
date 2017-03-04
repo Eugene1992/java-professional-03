@@ -5,9 +5,9 @@ import java.lang.reflect.Field;
 /**
  * Created by Sviatoslav on 02.03.2017.
  */
-public class JsonExeption extends Exception{
+public class JsonException extends Exception{
 
-    public JsonExeption(String message){
+    public JsonException(String message){
         super(message);
     }
 }

@@ -6,23 +6,24 @@ public class Human {
     @JsonField(name = "Full name")
     private String name;
 
-    @JsonField
+    @JsonField(name = "Age")
     private int age;
 
-    @JsonField
+    @JsonField(name = "Married")
     private boolean married;
 
-    @JsonField
+    @JsonField(name = "Grows")
     private int grows;
 
-    @JsonField
+    @JsonField(name = "Address")
     private String livingPlace;
 
-    public Human(String name, int age, boolean married, int hight, String livingPlace) {
+
+    public Human(String name, int age, boolean married, int grows, String livingPlace) {
         this.name = name;
         this.age = age;
         this.married = married;
-        this.grows = hight;
+        this.grows = grows;
         this.livingPlace = livingPlace;
     }
 
@@ -50,12 +51,12 @@ public class Human {
         this.married = married;
     }
 
-    public int getHight() {
+    public int getGrows() {
         return grows;
     }
 
-    public void setHight(int hight) {
-        this.grows = hight;
+    public void setGrows(int grows) {
+        this.grows = grows;
     }
 
     public String getLivingPlace() {
