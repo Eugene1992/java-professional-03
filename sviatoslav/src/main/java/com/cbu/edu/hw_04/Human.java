@@ -3,19 +3,19 @@ package com.cbu.edu.hw_04;
 @Json
 public class Human {
 
-    @Json_Fields(name = "Full name")
+    @JsonField(name = "Full name")
     private String name;
 
-    @Json_Fields
+    @JsonField
     private int age;
 
-    @Json_Fields
+    @JsonField
     private boolean married;
 
-    @Json_Fields
+    @JsonField
     private int grows;
 
-    @Json_Fields
+    @JsonField
     private String livingPlace;
 
     public Human(String name, int age, boolean married, int hight, String livingPlace) {
