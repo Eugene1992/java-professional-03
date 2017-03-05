@@ -1,43 +1,66 @@
 package com.cbu.edu.hw_05;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
 /**
  * Created by Sviatoslav on 05.03.2017.
  */
 public class ReadSubtitles {
     private HashMap<String, Integer> subtitles;
-    private String line;
+    private ArrayList<String> arrayList;
 
     public ReadSubtitles(HashMap<String, Integer> subtitles) {
         this.subtitles = subtitles;
+        this.arrayList = new ArrayList<>();
     }
 
-    public HashMap<String, Integer> readFromFiles() {
-        Pattern pattern = Pattern.compile("[a-zA-Z]{2,}+");
+    public ArrayList<String> readFromFiles() {
         String path = "E:\\ProjectAndOther\\IDEAProjects\\java-professional-03\\sviatoslav\\src\\main\\java\\com\\cbu\\edu\\hw_05\\Game.of.Thrones.-.03x02.txt";
-        try (BufferedInputStream br = new BufferedInputStream(new FileInputStream(path))) {
-            byte[] data = new byte[1024];
-            int check = br.read(data, 0, data.length);
-            while (check != 0){
-
+        try (InputStream is = new BufferedInputStream(new FileInputStream(path))) {
+            byte[] buffer = new byte[is.available()];
+            is.read(buffer);
+            String[] lines = new String(buffer).split("\\n");
+            for (String line : lines) {
+                String[] words = line.split(" ");
+                for (String word : words) {
+                    if (word.matches("([a-zA-Z]{2,})+")) {
+                        arrayList.add(word);
+                    }
+                }
             }
-
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return subtitles;
+        return arrayList;
     }
 
-    /*public int countWords(String str) {
+    public int countDuplicatedWords(String example) {
         int count = 0;
-        for (int i = 0; i < line.length(); i++) {
-            if (line.equals(str)) {
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (example.equals(arrayList.get(i))) {
                 count++;
             }
         }
         return count;
-    }*/
+    }
+
+    public HashMap<String, Integer> fillMap() {
+        for (int i = 0; i < arrayList.size(); i++) {
+            subtitles.putIfAbsent(arrayList.get(i), countDuplicatedWords(arrayList.get(i)));
+        }
+        return subtitles;
+    }
+
+    public int totalWords() {
+        return arrayList.size();
+    }
+
+    public int totalUniqueWords() {
+        return subtitles.size();
+    }
 }
