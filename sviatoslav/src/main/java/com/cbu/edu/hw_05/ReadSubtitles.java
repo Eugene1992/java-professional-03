@@ -1,11 +1,11 @@
 package com.cbu.edu.hw_05;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static java.nio.file.Files.readAllLines;
 
 /**
  * Created by Sviatoslav on 05.03.2017.
@@ -19,12 +19,9 @@ public class ReadSubtitles {
         this.arrayList = new ArrayList<>();
     }
 
-    public ArrayList<String> readFromFiles() {
-        String path = "E:\\ProjectAndOther\\IDEAProjects\\java-professional-03\\sviatoslav\\src\\main\\java\\com\\cbu\\edu\\hw_05\\Game.of.Thrones.-.03x02.txt";
-        try (InputStream is = new BufferedInputStream(new FileInputStream(path))) {
-            byte[] buffer = new byte[is.available()];
-            is.read(buffer);
-            String[] lines = new String(buffer).split("\\n");
+    public ArrayList<String> readFromFiles(Path path) {
+        try {
+            String[] lines = (String[]) readAllLines(path).toArray();
             for (String line : lines) {
                 String[] words = line.split(" ");
                 for (String word : words) {
