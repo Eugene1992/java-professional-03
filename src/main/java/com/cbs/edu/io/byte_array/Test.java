@@ -5,7 +5,7 @@ import java.io.*;
 public class Test {
     public static void main(String[] args) throws IOException {
         byte[] buf = new byte[]{72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33};
-        String filePath = "C:\\Users\\Evgeniy\\Desktop\\java-professional-02\\src\\main\\java\\com\\cbs\\edu\\io\\byte_array\\file";
+        String filePath = "src\\main\\java\\com\\cbs\\edu\\io\\byte_array\\file";
         InputStream in = new ByteArrayInputStream(buf);
         OutputStream out = new FileOutputStream(filePath);
 
