@@ -14,9 +14,9 @@ public interface IEmployeeDAO<T extends IdEntity, ID extends Serializable> {
 
     T read(ID id);
 
-    T update(ID id);
+    void update(ID id);
 
-    T delete(ID id);
+    void delete(ID id);
 
     List<T> readAll();
 }

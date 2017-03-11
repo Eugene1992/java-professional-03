@@ -11,7 +11,9 @@ public class Main {
     public static void main(String[] args) {
         IEmployeeDAO<Employee, Integer> employeeDAO = new EmployeeDAOImpl();
         //employeeDAO.create();
-        System.out.println(employeeDAO.read(2));
-        //System.out.println(employeeDAO.readAll());
+        //System.out.println(employeeDAO.read(2));
+        //employeeDAO.update(3);
+        employeeDAO.delete(4);
+        System.out.println(employeeDAO.readAll());
     }
 }

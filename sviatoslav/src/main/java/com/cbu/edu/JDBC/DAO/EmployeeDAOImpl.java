@@ -17,17 +17,13 @@ import java.util.List;
 public class EmployeeDAOImpl implements IEmployeeDAO<Employee, Integer> {
     @Override
     public boolean create() {
-        Connection connection;
+        String query = "INSERT INTO Employee(full_name, age, address)" +
+                "VALUES ('Piotr', 28, 'Koszarowa')";
         boolean checkCreate = false;
-        try {
-            connection = MyConnection.getConnect();
-            String query = "INSERT INTO Employee(full_name, age, address)" +
-                    "VALUES ('Piotr', 28, 'Koszarowa')";
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = MyConnection.getConnect();
+             PreparedStatement statement = connection.prepareStatement(query)) {
             statement.executeUpdate();
             checkCreate = true;
-            connection.close();
-            statement.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,12 +33,11 @@ public class EmployeeDAOImpl implements IEmployeeDAO<Employee, Integer> {
 
     @Override
     public Employee read(Integer index) {
-        Connection connection;
-        try {
-            String query = "SELECT * FROM Employee Where Employee.id = " + index;
-            connection = MyConnection.getConnect();
-            PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet result = statement.executeQuery();
+        String query = "SELECT * FROM Employee Where Employee.id = " + index;
+        ResultSet result;
+        try (Connection connection = MyConnection.getConnect();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            result = statement.executeQuery();
             while (result.next()) {
                 if (result.getInt("id") == index) {
                     int id = result.getInt("id");
@@ -52,6 +47,7 @@ public class EmployeeDAOImpl implements IEmployeeDAO<Employee, Integer> {
                     return new Employee(id, name, age, address);
                 }
             }
+            result.close();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new IndexOutOfBoundsException();
@@ -60,13 +56,29 @@ public class EmployeeDAOImpl implements IEmployeeDAO<Employee, Integer> {
     }
 
     @Override
-    public Employee update(Integer integer) {
-        return null;
+    public void update(Integer index) {
+        String query = "UPDATE Employee "
+                + "SET full_name = 'Greg' , age = 20, address = 'Sieroca'"
+                + "WHERE id =" + index;
+        try (Connection connection = MyConnection.getConnect();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     @Override
-    public Employee delete(Integer integer) {
-        return null;
+    public void delete(Integer index) {
+        String query = "DELETE FROM Employee WHERE id = " + index;
+        try(Connection connection = MyConnection.getConnect();
+            PreparedStatement statement = connection.prepareStatement(query)){
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     @Override
