@@ -83,12 +83,10 @@ public class EmployeeDAOImpl implements IEmployeeDAO<Employee, Integer> {
 
     @Override
     public List<Employee> readAll() {
+        String query = "SELECT * FROM Employee";
         List<Employee> employees = new ArrayList<>();
-        Connection connection;
-        try {
-            String query = "SELECT * FROM Employee";
-            connection = MyConnection.getConnect();
-            PreparedStatement statement = connection.prepareStatement(query);
+        try(Connection connection = MyConnection.getConnect();
+            PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 int id = result.getInt("id");
@@ -98,9 +96,8 @@ public class EmployeeDAOImpl implements IEmployeeDAO<Employee, Integer> {
                 Employee employee = new Employee(id, firstName, age, address);
                 employees.add(employee);
             }
-            statement.close();
-            result.close();
             connection.close();
+            result.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
