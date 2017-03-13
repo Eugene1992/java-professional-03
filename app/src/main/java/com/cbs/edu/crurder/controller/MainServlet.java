@@ -18,6 +18,25 @@ public class MainServlet extends HttpServlet {
         EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
         List<Employee> employees = employeeDAO.readAll();
         PrintWriter printWriter = resp.getWriter();
-        printWriter.write(employees.toString());
+        printWriter.write("<table style=\"border: 1px solid black\">");
+        printWriter.write("<tr>");
+        printWriter.write("<td>First name</td>");
+        printWriter.write("<td>Last name</td>");
+        printWriter.write("<td>Age</td>");
+        printWriter.write("<td>Salary</td>");
+        printWriter.write("<td>Hire date</td>");
+        printWriter.write("</tr>");
+
+        for (Employee employee : employees) {
+            printWriter.write("<tr>");
+            printWriter.write("<td>" + employee.getFirstName() + "</td>");
+            printWriter.write("<td>" + employee.getLastName() + "</td>");
+            printWriter.write("<td>" + employee.getAge() + "</td>");
+            printWriter.write("<td>" + employee.getSalary() + "</td>");
+            printWriter.write("<td>" + employee.getHiredate() + "</td>");
+            printWriter.write("</tr>");
+        }
+
+        printWriter.write("</table>");
     }
 }
