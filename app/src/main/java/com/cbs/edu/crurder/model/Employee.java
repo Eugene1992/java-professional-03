@@ -4,15 +4,22 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Employee extends BaseEntity {
-
     private String firstName;
     private String lastName;
     private int age;
     private int salary;
-    private LocalDateTime hiredate;
+    private LocalDate hiredate;
 
-    public Employee(int id, String firstName, String lastName, int age, int salary, LocalDateTime hiredate) {
+    public Employee(int id, String firstName, String lastName, int age, int salary, LocalDate hiredate) {
         super(id);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.salary = salary;
+        this.hiredate = hiredate;
+    }
+
+    public Employee(String firstName, String lastName, int age, int salary, LocalDate hiredate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -52,11 +59,11 @@ public class Employee extends BaseEntity {
         this.salary = salary;
     }
 
-    public LocalDateTime getHiredate() {
+    public LocalDate getHiredate() {
         return hiredate;
     }
 
-    public void setHiredate(LocalDateTime hiredate) {
+    public void setHiredate(LocalDate hiredate) {
         this.hiredate = hiredate;
     }
 

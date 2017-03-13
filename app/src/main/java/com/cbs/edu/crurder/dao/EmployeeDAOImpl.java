@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class EmployeeDAOImpl implements GeneralDAO<Employee, Integer> {
 
     @Override
-    public Employee create() {
+    public Employee create(Employee employee) {
         return null;
     }
 
@@ -24,7 +25,7 @@ public class EmployeeDAOImpl implements GeneralDAO<Employee, Integer> {
     }
 
     @Override
-    public Employee update(Integer integer) {
+    public Employee update(Employee employee) {
         return null;
     }
 
@@ -48,7 +49,7 @@ public class EmployeeDAOImpl implements GeneralDAO<Employee, Integer> {
                 String lastName = rs.getString("last_name");
                 int age = rs.getInt("age");
                 int salary = rs.getInt("salary");
-                LocalDateTime hireDate = rs.getTimestamp("hiredate").toLocalDateTime();
+                LocalDate hireDate = rs.getDate("hiredate").toLocalDate();
                 Employee employee = new Employee(id, firstName, lastName, age, salary, hireDate);
                 employees.add(employee);
             }

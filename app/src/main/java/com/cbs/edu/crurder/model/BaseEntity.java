@@ -4,6 +4,9 @@ public abstract class BaseEntity {
 
     protected Integer id;
 
+    public BaseEntity() {
+    }
+
     public BaseEntity(Integer id) {
         this.id = id;
     }
