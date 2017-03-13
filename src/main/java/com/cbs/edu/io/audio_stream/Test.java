@@ -8,7 +8,7 @@ import java.io.*;
 
 public class Test {
     public static void main(String[] args) {
-        byte[] bytes = readWAVAudioFileData("C:\\Users\\Evgeniy\\Desktop\\java-professional-02\\src\\main\\java\\com\\cbs\\edu\\io\\audio_stream\\The_Pixies_-_Where_is_my_mind_.wav");
+        byte[] bytes = readWAVAudioFileData("src\\main\\java\\com\\cbs\\edu\\io\\audio_stream\\The_Pixies_-_Where_is_my_mind.wav");
         writeWAV(bytes);
     }
 
